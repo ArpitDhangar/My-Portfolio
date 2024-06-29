@@ -11,14 +11,21 @@ const Contact = () => {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    console.log('Form:', form.current);
 
-    emailjs.sendForm('service_k3pwfvi', 'template_sltwxia', form.current, 'tAdLf1NNM0LCN0GVgIs9K')
+
+    if (!form.current) {
+      console.error('Form reference is invalid.');
+      return;
+    }
+
+    emailjs.sendForm('service_k3pwfvi', 'template_sltwxia', form.current, 'x4OsyjplpfH6gage1')
       .then((result) => {
-          console.log(result.text);
-          e.target.reset();
-          alert('Email Sent !')
+        console.log('Success:', result.text);
+        e.target.reset();
+        alert('Email Sent!');
       }, (error) => {
-          console.log(error.text);
+        console.error('Error:', error.text);
       });
   };
 
@@ -28,10 +35,10 @@ const Contact = () => {
             <h1 className='contactPageTitle'>Contact Me</h1>
             <span className='contactDesc'>Please fill out the form below to discuss any work opportunities.</span>
             <form className='contactForm' ref={form} onSubmit={sendEmail}>
-                <input type='text' className="name" placeholder='Your Name' name='your_name'/>
-                <input type='email' className="email" placeholder='Your email' name='your_email'/>
-                <textarea className='msg' name='message' rows='5' placeholder='Your Message'></textarea>
-                <button type='submit' value='Send' className='submitBtn'>Submit</button>
+                <input type='text' className="name" placeholder='Your Name' name='your_name' required />
+                <input type='email' className="email" placeholder='Your email' name='your_email' required />
+                <textarea className='msg' name='message' rows='5' placeholder='Your Message' required></textarea>
+                <button type='submit' className='submitBtn'>Submit</button>
                 <div className='links'>
                     <img src={FacebookIcon} alt='Facebook' className='link'/>
                     <img src={TwitterIcon} alt='Twitter' className='link'/>
@@ -41,7 +48,7 @@ const Contact = () => {
             </form>
         </div>
     </section>
-  )
+  );
 }
 
-export default Contact
+export default Contact;

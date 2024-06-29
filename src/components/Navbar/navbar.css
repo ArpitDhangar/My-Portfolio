@@ -15,6 +15,7 @@
 
 .logo {
     object-fit: cover;
+    background-color: beige;
     height: 3rem;
     width: 4rem;
 }

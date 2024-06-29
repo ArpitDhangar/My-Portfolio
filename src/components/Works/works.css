@@ -28,6 +28,12 @@
     flex-wrap: wrap;
     width: 100vw;
     max-width: 65rem;
+
+    img{
+        object-fit: contain;
+        width: 300px;
+        height: 200px;
+    }
 }
 
 .worksImg {
